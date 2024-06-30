@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="static/elites_home.css">
+        <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-thin.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-solid.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-regular.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-light.css"
+      >
+    </head>
+    <body>
+        <section>
+            <div class="navbar">
+                <div class="logo"><a href = "http://localhost:8080/home">The Web</a></div>
+                <ul class="content">
+                  <li><a href = "http://localhost:8080/home">Home</a></li>
+                  <li><a href = "http://localhost:8080/signup">Sign up</a></li>
+                  <li><a href = "http://localhost:8080/login">Login</a></li>
+                  <li><a href = "#">Contact</a></li>
+                </ul>
+                <a href="http://localhost:8080/signup" class="action_btn">Get Started</a>
+                <div class="toggle_btn">
+                    <i class="fa-duotone fa-bars"></i>
+                </div>
+              </div>
+            <div class="menu">
+                <li><a href = "http://localhost:8080/home">Home</a></li>
+                <li><a href = "http://localhost:8080/signup">Sign up</a></li>
+                <li><a href = "http://localhost:8080/login">Login</a></li>
+                <li><a href = "#">Contact</a></li>
+                <li><a href="http://localhost:8080/signup" class="action_btn">Get Started</a></li>
+            </div>
+            <main>
+                <div id = main>
+                    <h1>Welcome Dear User...</h1>
+                    <p>Please "login" or "sign up" to continue...</p><br>
+                    <p>Welcome to our website.<br>This is the test Home page for out website.</p><br>
+                    <a href="http://localhost:8080/signup" class="action_btn">Get Started</a>
+                </div>
+            </main>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </section>
+    </body>
+    <script>
+        const ToggleBtn = document.querySelector(".toggle_btn");
+        const ToggleBtn_i = document.querySelector(".toggle_btn i");
+        const Menu = document.querySelector(".menu");
+
+        ToggleBtn.onclick = function (){
+            Menu.classList.toggle("open");
+            const ifOpen = Menu.classList.contains("open");
+
+            ToggleBtn_i.classList = ifOpen
+            ? "fa-duotone fa-eye-low-vision"
+            : "fa-duotone fa-bars"
+        }
+    </script>
+</html>

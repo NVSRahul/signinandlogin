@@ -1,0 +1,302 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    background-color: black;
+    background-position: center;
+}
+
+/* This is the animation of star */
+
+section{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color:black;
+    background-size: cover;
+}
+
+@keyframes animateBg{
+    0%,100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+}
+
+span{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 4px;
+    height: 4px;
+    background: cyan;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.1),0 0 0 8px rgba(255,255,255,0.1),0 0 20px rgba(255,255,255,0.1);
+    animation: animate 3s linear infinite;
+}
+span::before{
+    content:'';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg,#FF5733,transparent);
+}
+@keyframes animate
+{
+    0%
+    {
+        transform: rotate(315deg) translateX(0);
+        opacity: 1;
+    }
+    70%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        transform: rotate(315deg) translateX(-1000px);
+        opacity: 0;
+    }
+}
+span:nth-child(1){
+    top: 0;
+    right: 0;
+    left: initial;
+    animation-delay: 0s;
+    animation-duration: 1s;
+}
+span:nth-child(2){
+    top: 0;
+    right: 80px;
+    left: initial;
+    animation-delay: 0.2s;
+    animation-duration: 3s;
+}
+span:nth-child(3){
+    top: 80;
+    right: 0px;
+    left: initial;
+    animation-delay: 0.4s;
+    animation-duration: 2s;
+}
+span:nth-child(4){
+    top: 0;
+    right: 180px;
+    left: initial;
+    animation-delay: 0.6s;
+    animation-duration: 1.5s;
+}
+span:nth-child(5){
+    top: 0;
+    right: 400px;
+    left: initial;
+    animation-delay: 0.8s;
+    animation-duration: 2.5s;
+}
+span:nth-child(6){
+    top: 0;
+    right: 600px;
+    left: initial;
+    animation-delay: 1s;
+    animation-duration: 3s;
+}
+span:nth-child(7){
+    top: 300px;
+    right: 0px;
+    left: initial;
+    animation-delay: 1.2s;
+    animation-duration: 1.75s;
+}
+span:nth-child(8){
+    top: 0px;
+    right: 700px;
+    left: initial;
+    animation-delay: 1.4s;
+    animation-duration: 1.25s;
+}
+span:nth-child(9){
+    top: 0px;
+    right: 1000px;
+    left: initial;
+    animation-delay: 0.75s;
+    animation-duration: 2.25s;
+}
+span:nth-child(9){
+    top: 0px;
+    right: 450px;
+    left: initial;
+    animation-delay: 2.75s;
+    animation-duration: 2.75s;
+}
+
+/* This is the end of the animation of the stars */
+
+/* Now */
+
+a{
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+a:hover{
+    color: olive;
+}
+
+.navbar{
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo a{
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar .content{
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .toggle_btn{
+    font-size: 27px;
+    cursor: pointer;
+    display: none;
+}
+
+.action_btn {
+    background-color: purple;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.action_btn:hover{
+    scale: 1.07;
+    color: white;
+}
+
+.menu{
+    display: none;
+    position: absolute;
+    right: 40px;
+    top: 60px;
+    height: 0;
+    width: 300px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu.open{
+    height: 240px;
+}
+
+.menu li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu .action_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 992px){
+    .navbar .content,
+    .navbar .action_btn{
+        display: none;
+    }
+
+    .navbar .toggle_btn{
+        margin: 40px;
+        display: block;
+    }
+
+    .navbar .logo a{
+        margin: 40px;
+    }
+
+    .menu{
+        display: block;
+    }
+}
+
+@media (max-width: 576px){
+    .navbar .content,
+    .navbar .action_btn{
+        display: none;
+    }
+
+    .navbar .toggle_btn{
+        margin: 40px;
+        display: block;
+    }
+
+    .navbar .logo a{
+        margin: 40px;
+    }
+
+    .menu{
+        display: block;
+    }
+}
+
+div#main{
+    color: white;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#main h1{
+    color: white;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+#main p{
+    font-size: 18px;
+}
+
+.toggle_btn i{
+    --fa-primary-color: #ece4fb; 
+    --fa-primary-opacity: 2; 
+    --fa-secondary-color: #814df9; 
+    --fa-secondary-opacity: 0.7;
+}
+
+.fa-duotone.fa-eye-low-vision{
+    --fa-primary-opacity: 0.9; 
+    --fa-secondary-color: #ff0000; 
+    --fa-secondary-opacity: 1;
+}

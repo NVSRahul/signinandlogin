@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../public/elites.css">
+        <!-- <script src="https://kit.fontawesome.com/15eaa30459.js" crossorigin="anonymous"></script> (For free symbols)--> 
+  
+        <link
+          rel="stylesheet"
+          href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css"
+        >
+  
+        <link
+          rel="stylesheet"
+          href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-thin.css"
+        >
+  
+        <link
+          rel="stylesheet"
+          href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-solid.css"
+        >
+  
+        <link
+          rel="stylesheet"
+          href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-regular.css"
+        >
+  
+        <link
+          rel="stylesheet"
+          href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-light.css"
+        >
+    </head>
+    <body>
+        <div class = wrapper>
+            <div class = "form-container">
+                <form method="GET" id = "MainForm">
+                    <div class = "signup">
+                        <h1>Sign up</h1>
+                    </div>
+                    <div class = "username">
+                        <input type = "text" class = "input-text" id = "user" required>
+                        <label for = "user" class = "user">Username</label>
+                        <i class="fa-duotone fa-user-plus"></i>
+                    </div>
+                    <div class = "email">
+                        <input type = "email" class = "input-text" id = "email" required>
+                        <label for = "email" class = "the-email">Email</label>
+                        <i class="fa-duotone fa-paper-plane"></i>
+                    </div>
+                    <div class = "pass0">
+                        <input type="password" class = "input-text" id = "pass0" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title = "Which is atleast 8 characters containing : One capital
+                        (alphabets), Small(alphabets), Symbol, Number." onkeyup =" return validateForm()" required>
+                        <label for="psw" class = password0>Password</label>
+                        <i class="fa-duotone fa-shield-halved"></i>
+                    </div>
+                    <div class = "pass1">
+                        <input type="password" class = "input-text" id = "pass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title = "Which is atleast 8 characters containing : One capital
+                        (alphabets), Small(alphabets), Symbol, Number." onkeyup =" return validateForm()" required>
+                        <label for="psw" class = password1>Confirm password</label>
+                        <i class="fa-duotone fa-shield-halved"></i>
+                    </div>
+                    <div class = "else">
+                        <p>Already have an account ? <span><a href ="http://localhost:8080/login" target="_blank">Login</a></span></p>
+                    </div>
+                    <div class ="btn">
+                        <span id="passwordError" class="error"></span>
+                        <button type = "submit" class = "sign" id="btn" >Sign up</button>
+                    </div>
+                </form>
+            </div>  
+        </div>
+    </body>
+    <script>
+        function validateForm(){  // this fuction is for confirm password validation
+        var pass0 = document.getElementById("pass0").value;
+        var pass1 = document.getElementById("pass1").value;
+        var passwordError = document.getElementById("passwordError");
+        if (pass0 != pass1){
+            document.getElementById("btn").disabled = true;
+            passwordError.textContent = "Passwords do not match! Please recheck";
+            return false;
+        }else{
+            document.getElementById("btn").disabled = false;
+            passwordError.textContent = "";
+            return true;
+        }
+    
+}
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getDatabase, ref, set, child, get, onValue} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyCy9f9jYZrY8efuJUdcC81bPoLHWzH95AE",
+          authDomain: "webpage-68394.firebaseapp.com",
+          databaseURL: "https://webpage-68394-default-rtdb.firebaseio.com",
+          projectId: "webpage-68394",
+          storageBucket: "webpage-68394.appspot.com",
+          messagingSenderId: "801018017341",
+          appId: "1:801018017341:web:9a3616657739e2a4d71c54"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const dbref = ref(db);
+        const auth = getAuth(app);
+
+        var MainForm = document.getElementById("MainForm");
+        var user_data = "Users";
+        var userId = document.getElementById("user");
+        var email = document.getElementById("email");
+        var password = document.getElementById("pass0");
+        var passwordError = document.getElementById("passwordError");
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            createUserWithEmailAndPassword(auth, email.value, password.value,)
+            .then((userCredential) => {
+                const user = userCredential.user.uid;
+                set(ref(db, "UserAuthList/" + user), {
+                username : userId.value,
+                email: email.value
+                })
+                alert("Data saved");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                if (errorCode == "auth/email-already-in-use"){
+                    alert("Email Already in use");
+                }else{
+                    alert(errorCode);
+                }
+            });
+        };
+        MainForm.addEventListener("submit", handleSubmit);
+      </script>
+</html>
